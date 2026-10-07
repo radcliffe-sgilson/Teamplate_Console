@@ -27,9 +27,25 @@
             while (_invalidInput)
             {
                 //First do a check to see if the input is actually a number
-                //Then do a range check to see if its a valid menu option
-                //if it is valid, trigger the action
-                //if not valid, show an error message
+                int selection = -1;
+                if(int.TryParse(input, out selection)){
+                    //Then do a range check to see if its a valid menu option
+                    selection = selection - 1;
+                    if(selection >= 0 && selection < _options.Count)
+                    {
+                        //if it is valid, trigger the action
+                        _options[selection].Trigger();
+                    }
+                    else
+                    {
+                        //Error Message - options out of range
+                    }
+                }
+                else
+                {
+                    //Error Message - not a valid
+                }
+
             }
         }
     }
