@@ -21,6 +21,16 @@
 
         public void AddItem() { }
 
-        public void MakeSelection(string? input) { }
+        public void MakeSelection(string? input) {
+            //Start a loop
+            bool _invalidInput = true;
+            while (_invalidInput)
+            {
+                //First do a check to see if the input is actually a number
+                //Then do a range check to see if its a valid menu option
+                //if it is valid, trigger the action
+                //if not valid, show an error message
+            }
+        }
     }
 }
