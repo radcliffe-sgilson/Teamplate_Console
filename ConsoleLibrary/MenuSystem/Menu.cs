@@ -6,6 +6,12 @@
         private string _title = "New Menu";
         private string _prompt = "Make a selection: ";
 
+        public Menu(string title, string prompt)
+        {
+            _title = title;
+            _prompt = prompt;
+        }
+
         public void Display() {
             Console.WriteLine(_title);
             for(int i = 0; i < _options.Count; i++)
@@ -19,7 +25,9 @@
             MakeSelection(selection);
         }
 
-        public void AddItem() { }
+        public void AddItem(string name, Action action) {
+            _options.Add(new MenuItem(name, action));
+        }
 
         public void MakeSelection(string? input) {
             //Start a loop
@@ -35,15 +43,22 @@
                     {
                         //if it is valid, trigger the action
                         _options[selection].Trigger();
+                        _invalidInput = false;
                     }
                     else
                     {
                         //Error Message - options out of range
+                        Console.WriteLine("Please select a valid option.");
+                        Console.Write("Press Enter to Try Again");
+                        Console.ReadLine();
                     }
                 }
                 else
                 {
                     //Error Message - not a valid
+                    Console.WriteLine("Please enter numbers only.");
+                    Console.Write("Press Enter to Try Again");
+                    Console.ReadLine();
                 }
 
             }
